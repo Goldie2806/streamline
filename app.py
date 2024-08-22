@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from st_aggrid import AgGrid
+# from st_aggrid import AgGrid
 
 st.set_page_config(
     layout="centered",
