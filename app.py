@@ -34,7 +34,7 @@ df_selection = df.query(
 )
 
 "---"
-AgGrid(df_selection,fit_columns_on_grid_load=True)
+st.table(df_selection)
 st.text("Brought to you by Indy Amp Repair!")
 
 hide_st_style = """
