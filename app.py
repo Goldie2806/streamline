@@ -17,7 +17,7 @@ st.markdown("""This tool was created to provide current market pricing on car au
 #caching data instead of reloading on each filter call
 @st.cache_data
 def getdata():
-    df = pd.read_csv('_select_make_model_round_avg_price_2_as_Price_condition_from_amp_202408211331.csv')
+    df = pd.read_csv('amps.csv')
     return df
 df = getdata()
 
