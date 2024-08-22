@@ -40,6 +40,7 @@ st.text("Brought to you by Indy Amp Repair!")
 hide_st_style = """
 <style>
 header {visibility: hidden;}
+footer {visibility: hidden;}
 </style>
 """
 
