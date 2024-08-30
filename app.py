@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
-# from st_aggrid import AgGrid
+import json
+import os
+
 
 st.set_page_config(
     layout="centered",
@@ -36,6 +38,28 @@ df_selection = df.query(
 "---"
 st.table(df_selection)
 st.text("Brought to you by Indy Amp Repair!")
+
+"---"
+st.title("Have you recently sold an Amp?")
+st.markdown("""Please fill out the form below as this data will give other users like yourself a better idea how much an amp is worth.""") 
+with st.form(key = 'User_Submit'):
+    make = st.text_input("What make was the amp?", "", placeholder = "Ex. Kicker")
+    model = st.text_input("What model was the amp?", "",placeholder = "Ex. XS50")
+    number = st.number_input("How much did you sell the amp for?")
+    option = st.selectbox(
+        "What condition was the amp in?",
+        ("New", "Pre-Owned", "Parts Only"),
+    )
+    date = st.date_input("When did you sell this amp?")
+    submit_button = st.form_submit_button()
+dt_str = date.strftime("%Y-%m-%d")
+str_date = json.dumps(dt_str)
+if submit_button:
+    response = (
+    supabase.table("ampdata")
+    .insert({"make":make, "model":model, "price":number, "condition":option, "sold_date":str_date})
+    .execute()
+)
 
 hide_st_style = """
 <style>
