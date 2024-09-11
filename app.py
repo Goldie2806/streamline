@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import json
 import os
+from supabase import create_client, Client
+
+supabase: Client = create_client(st.secrets["url"], st.secrets["key"])
 
 
 st.set_page_config(
